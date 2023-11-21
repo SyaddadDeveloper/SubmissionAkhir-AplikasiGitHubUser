@@ -82,3 +82,17 @@ G.idea/sonarlint/issuestore/9/b/9b78fddca191fa8e399f02674d683aed03a47219,6\2\62
 Q.idea/sonarlint/securityhotspotstore/d/2/d2a4383452aad84a18429a5844d31330a012a9e6,7\f\7fcac164c7a46b8fc6411ea93226c884af6044db
 w
 G.idea/sonarlint/issuestore/0/c/0c01b795bb9572ded5414c0629d85598c3c00a77,2\3\236c671c939a8ef510fcf0bc799243fcf1d12355
+å
+\app/src/main/java/com/example/submissionawalaplikasigithubuser/data/database/FavoriteUser.kt,2\d\2d6729243cc6cee7be3108f49446de0dadde7132
+è
+_app/src/main/java/com/example/submissionawalaplikasigithubuser/data/database/FavoriteUserDao.kt,9\b\9bfd5f74d1ffc458e412be7719c5ae6c58f94646
+ò
+happ/src/main/java/com/example/submissionawalaplikasigithubuser/data/database/FavoriteUserRoomDatabase.kt,b\6\b663ec563db12604fbfd30a957ce8773e3b568b6
+ê
+`app/src/main/java/com/example/submissionawalaplikasigithubuser/data/repository/UserRepository.kt,3\c\3ca08fd10edb5a5d117297c711eb1f246165d80d
+ì
+capp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/favorite/FavoriteUserViewModel.kt,a\3\a38c3ff54818bd77c465afc832c88680187b8c6f
+í
+bapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/favorite/FavoriteUserActivity.kt,7\a\7a1e6e18b685ad83d074f1793102290c6afa3a9f
+Ö
+Uapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/ViewModelFactory.kt,a\6\a6ca566525a4ee30fde3f705adc358791c715a5c

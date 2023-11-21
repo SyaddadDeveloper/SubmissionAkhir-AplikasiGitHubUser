@@ -1,20 +1,28 @@
 package com.example.submissionawalaplikasigithubuser.ui.detail
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.submissionawalaplikasigithubuser.data.database.FavoriteUser
+import com.example.submissionawalaplikasigithubuser.data.repository.UserRepository
 import com.example.submissionawalaplikasigithubuser.data.response.DetailUserResponse
 import com.example.submissionawalaplikasigithubuser.data.response.ItemsItem
 import com.example.submissionawalaplikasigithubuser.data.retrofit.ApiConfig
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+//class DetailViewModel() : ViewModel() {
 
-    private val _userDetail = MutableLiveData<DetailUserResponse>()
-    val userDetail: LiveData<DetailUserResponse> = _userDetail
+class DetailViewModel(application: Application) : ViewModel() {
+    private val userRepository: UserRepository = UserRepository(application)
+
+    private val _userDetail = MutableLiveData<FavoriteUser>()
+    val userDetail: LiveData<FavoriteUser> = _userDetail
 
     private val _loadingScreen = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loadingScreen
@@ -24,6 +32,7 @@ class DetailViewModel : ViewModel() {
 
     private val _userFollowing = MutableLiveData<List<ItemsItem>>()
     val userFollowing: LiveData<List<ItemsItem>> = _userFollowing
+
 
     private var isloaded = false
     private var isfollowerloaded = false
@@ -44,7 +53,22 @@ class DetailViewModel : ViewModel() {
                 ) {
                     _loadingScreen.value = false
                     if (response.isSuccessful) {
-                        _userDetail.postValue(response.body())
+                        val responseBody = response.body()
+                        if (responseBody != null) {
+                            viewModelScope.launch {
+                                val isFavorite = userRepository.getIsFavorite(responseBody.login)
+                                val currentUser =
+                                    FavoriteUser( // memanggil yang ada di database tanpa menggunakan intent
+                                        username = responseBody.login,
+                                        name = responseBody.name,
+                                        avatarUrl = responseBody.avatarUrl,
+                                        followersCount = responseBody.followers.toString(),
+                                        followingCount = responseBody.following.toString(),
+                                        isFavorite = isFavorite
+                                    )
+                                _userDetail.postValue(currentUser)
+                            }
+                        }
                     } else {
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
@@ -66,7 +90,7 @@ class DetailViewModel : ViewModel() {
             client.enqueue(object : Callback<List<ItemsItem>> {
                 override fun onResponse(
                     call: Call<List<ItemsItem>>,
-                    response: Response<List<ItemsItem>>
+                    response: Response<List<ItemsItem>>,
                 ) {
                     _loadingScreen.value = false
                     if (response.isSuccessful) {
@@ -75,6 +99,7 @@ class DetailViewModel : ViewModel() {
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
+
                 override fun onFailure(call: Call<List<ItemsItem>>, t: Throwable) {
                     _loadingScreen.value = false
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -91,7 +116,7 @@ class DetailViewModel : ViewModel() {
             client.enqueue(object : Callback<List<ItemsItem>> {
                 override fun onResponse(
                     call: Call<List<ItemsItem>>,
-                    response: Response<List<ItemsItem>>
+                    response: Response<List<ItemsItem>>,
                 ) {
                     _loadingScreen.value = false
                     if (response.isSuccessful) {
@@ -109,5 +134,13 @@ class DetailViewModel : ViewModel() {
             })
             isfollowerloaded = true
         }
+    }
+
+    fun insertFavorite(favoriteUser: FavoriteUser) {
+        userRepository.insert(favoriteUser)
+    }
+
+    fun deleteFavorite(favoriteUser: FavoriteUser) {
+        userRepository.delete(favoriteUser)
     }
 }

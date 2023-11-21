@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -29,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures{
@@ -43,18 +45,21 @@ android {
 }
 
 dependencies {
+    //room
+    implementation("androidx.room:room-runtime:2.6.0")
+    ksp("androidx.room:room-compiler:2.6.0")
 
     //view Pager
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     //view Model
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.activity:activity-ktx:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.8.1")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     //circle Image
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
