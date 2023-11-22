@@ -8,7 +8,7 @@ import com.example.submissionawalaplikasigithubuser.data.repository.UserReposito
 
 class FavoriteUserViewModel(application: Application) : ViewModel() {
     private val userRepository: UserRepository = UserRepository(application)
-    private fun getAllFavoriteUsers(): LiveData<List<FavoriteUser>> = userRepository.getAllFavorite()
+    fun getAllFavoriteUsers(): LiveData<List<FavoriteUser>> = userRepository.getAllFavorite()
     init {
         getAllFavoriteUsers()
     }

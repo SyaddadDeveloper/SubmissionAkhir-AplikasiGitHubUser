@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SubmissionAwalAplikasiGitHubUser"
         tools:targetApi="31">
         <activity
+            android:name=".ui.setting.SettingThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.favorite.FavoriteUserActivity"
             android:exported="false" />
         <activity

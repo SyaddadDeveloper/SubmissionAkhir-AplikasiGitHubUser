@@ -1,5 +1,6 @@
 package com.example.submissionawalaplikasigithubuser.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +9,12 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.submissionawalaplikasigithubuser.R
 import com.example.submissionawalaplikasigithubuser.data.response.GithubResponse
 import com.example.submissionawalaplikasigithubuser.data.response.ItemsItem
 import com.example.submissionawalaplikasigithubuser.data.retrofit.ApiConfig
 import com.example.submissionawalaplikasigithubuser.databinding.ActivityMainBinding
+import com.example.submissionawalaplikasigithubuser.ui.favorite.FavoriteUserActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
+            searchBar.inflateMenu(R.menu.option_menu)
             searchView
                 .editText
                 .setOnEditorActionListener { _, _, _ ->
@@ -49,18 +53,32 @@ class MainActivity : AppCompatActivity() {
                     }
                     false
                 }
+            searchBar.setOnMenuItemClickListener { menuitem ->
+                when (menuitem.itemId) {
+                    R.id.menu1 -> {
+                        val intent = Intent(this@MainActivity, FavoriteUserActivity::class.java)
+                        startActivity(intent)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
         }
 
 
-        // berdasarkan warning tertulis Replace function call with indexed accessor. jadi saya menerapkan sarannya
+//         berdasarkan warning tertulis Replace function call with indexed accessor. jadi saya menerapkan sarannya
         val userVIewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         )[UserViewModel::class.java]
         userVIewModel.listUser.observe(this) {
-            setReviewData(it)
+            if (it != null) {
+                setReviewData(it)
+            }
         }
-        userVIewModel.isLoading.observe(this) {
+
+        userViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 
@@ -112,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
     }
+
     private fun showNotFound(isDataNotFound: Boolean) {
         binding.apply {
             if (isDataNotFound) {

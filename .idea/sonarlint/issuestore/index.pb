@@ -96,3 +96,7 @@ capp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/favorite/Favo
 bapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/favorite/FavoriteUserActivity.kt,7\a\7a1e6e18b685ad83d074f1793102290c6afa3a9f
 …
 Uapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/ViewModelFactory.kt,a\6\a6ca566525a4ee30fde3f705adc358791c715a5c
+‘
+aapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/favorite/FavoriteUserAdapter.kt,2\6\26d1807c39b8af38c2770dd04941a6c4129b044d
+‘
+aapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/setting/SettingThemeActivity.kt,d\f\df32399aa0884964384d96e96fe3bdd014be110e
