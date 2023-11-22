@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +17,11 @@ import com.example.submissionawalaplikasigithubuser.data.response.ItemsItem
 import com.example.submissionawalaplikasigithubuser.data.retrofit.ApiConfig
 import com.example.submissionawalaplikasigithubuser.databinding.ActivityMainBinding
 import com.example.submissionawalaplikasigithubuser.ui.favorite.FavoriteUserActivity
+import com.example.submissionawalaplikasigithubuser.ui.setting.SettingThemeActivity
+import com.example.submissionawalaplikasigithubuser.ui.setting.SettingThemePreferences
+import com.example.submissionawalaplikasigithubuser.ui.setting.SettingThemeViewModel
+import com.example.submissionawalaplikasigithubuser.ui.setting.SettingThemeViewModelFactory
+import com.example.submissionawalaplikasigithubuser.ui.setting.dataStore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,9 +38,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        val pref = SettingThemePreferences.getInstance(application.dataStore)
+        val settingViewModel =
+            ViewModelProvider(this, SettingThemeViewModelFactory(pref))[SettingThemeViewModel::class.java]
+
+        settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
@@ -60,19 +80,17 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                         true
                     }
-
+                    R.id.menu2 -> {
+                        val intent = Intent(this@MainActivity, SettingThemeActivity::class.java)
+                        startActivity(intent)
+                        true
+                    }
                     else -> false
                 }
             }
         }
 
-
-//         berdasarkan warning tertulis Replace function call with indexed accessor. jadi saya menerapkan sarannya
-        val userVIewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[UserViewModel::class.java]
-        userVIewModel.listUser.observe(this) {
+        userViewModel.listUser.observe(this) {
             if (it != null) {
                 setReviewData(it)
             }

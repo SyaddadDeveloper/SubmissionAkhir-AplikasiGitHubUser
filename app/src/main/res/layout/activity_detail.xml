@@ -7,6 +7,7 @@
     tools:context=".ui.detail.DetailActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -113,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="?attr/colorPrimary"
+                android:contentDescription="@string/tab_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,8 +133,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabs" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -141,9 +141,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:contentDescription="@string/icon_favorite"
         app:fabSize="normal"
-        app:layout_anchor="@id/tabs"
+        app:layout_anchor="@id/scrollView"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_favorite_border"
-        android:contentDescription="@string/icon_favorite" />
+        app:srcCompat="@drawable/ic_favorite_border" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

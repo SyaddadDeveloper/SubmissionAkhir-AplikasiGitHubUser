@@ -12,8 +12,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SubmissionAwalAplikasiGitHubUser"
+        android:theme="@style/Base.Theme.SubmissionAwalAplikasiGitHubUser"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.setting.SettingThemeActivity"
             android:exported="false" />
@@ -24,7 +27,7 @@
             android:name=".ui.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

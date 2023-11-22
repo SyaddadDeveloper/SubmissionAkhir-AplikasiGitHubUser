@@ -100,3 +100,13 @@ Uapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/ViewModelFact
 aapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/favorite/FavoriteUserAdapter.kt,2\6\26d1807c39b8af38c2770dd04941a6c4129b044d
 ë
 aapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/setting/SettingThemeActivity.kt,d\f\df32399aa0884964384d96e96fe3bdd014be110e
+è
+_app/src/main/java/com/example/submissionawalaplikasigithubuser/ui/setting/SettingPreferences.kt,4\e\4e3e5c00657d8a8b07b3e6cc45bee26d5f5891d4
+î
+dapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/setting/SettingThemePreferences.kt,2\0\208a0cc18aaaebe3cc5cbe27b212afafece709a1
+í
+bapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/setting/SettingThemeViewModel.kt,7\6\7682018f2235578df15e280d32396e55f45aa902
+ô
+iapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/setting/SettingThemeViewModelFactory.kt,8\f\8fd3ac6336cb9cc57f276c1e1d4cc0b9129dc5c0
+Å
+Qapp/src/main/java/com/example/submissionawalaplikasigithubuser/ui/SplashScreen.kt,b\0\b02a7a33a36152b2285551c8f9b3d00752f6e7bd
