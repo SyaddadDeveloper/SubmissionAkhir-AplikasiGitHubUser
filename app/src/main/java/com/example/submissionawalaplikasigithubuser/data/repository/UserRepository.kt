@@ -30,6 +30,4 @@ class UserRepository(application: Application) {
     fun delete(favorite: FavoriteUser) {
         executorService.execute { mFavoritesUserDao.delete(favorite) }
     }
-
-
 }

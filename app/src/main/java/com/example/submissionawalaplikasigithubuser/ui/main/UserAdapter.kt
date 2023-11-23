@@ -12,7 +12,7 @@ import com.example.submissionawalaplikasigithubuser.databinding.ItemUserBinding
 import com.example.submissionawalaplikasigithubuser.ui.detail.DetailActivity
 
 
-class UserAdapter: ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,7 +24,8 @@ class UserAdapter: ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBAC
         holder.bind(user)
     }
 
-    class MyViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemsItem) {
             binding.tvItemName.text = item.login
 
@@ -40,16 +41,15 @@ class UserAdapter: ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBAC
         }
     }
 
-        companion object {
-            val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemsItem>() {
-                override fun areItemsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
-                    return oldItem == newItem
-                }
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemsItem>() {
+            override fun areItemsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
+                return oldItem == newItem
+            }
 
-                override fun areContentsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
-                    return oldItem == newItem
-                }
+            override fun areContentsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
+                return oldItem == newItem
             }
         }
-
+    }
 }

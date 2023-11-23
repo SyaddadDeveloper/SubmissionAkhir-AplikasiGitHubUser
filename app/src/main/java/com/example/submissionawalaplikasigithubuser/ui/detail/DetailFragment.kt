@@ -13,11 +13,8 @@ import com.example.submissionawalaplikasigithubuser.databinding.FragmentDetailBi
 class DetailFragment : Fragment() {
     private var position = 0
     private var username: String = ""
-
     private lateinit var binding: FragmentDetailBinding
     private val detailViewModel: DetailViewModel by activityViewModels()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +36,6 @@ class DetailFragment : Fragment() {
             position = it.getInt(ARG_POSITION)
             username = it.getString(ARG_USERNAME) ?: "test"
         }
-
 
         detailViewModel.getUserFollowing(username)
         detailViewModel.getUserFollower(username)
@@ -64,7 +60,6 @@ class DetailFragment : Fragment() {
             }
         }
     }
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.apply {
